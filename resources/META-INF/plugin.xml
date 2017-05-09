@@ -1,17 +1,18 @@
 <idea-plugin>
   <id>com.zxk.plugin.buildjson</id>
   <name>build json</name>
-  <version>1.0</version>
+  <version>0.1</version>
   <vendor email="zxk844977406@outlook.com" url="http://xinkunz.github.io">zhang xinkun</vendor>
 
   <description><![CDATA[
-      Enter short description for your plugin here.<br>
-      <em>most HTML tags may be used</em>
+      <em>Create toJson() method in java file automatically</em>
     ]]></description>
 
   <change-notes><![CDATA[
-      Add change notes here.<br>
-      <em>most HTML tags may be used</em>
+    <h1>version 0.1</h1>
+    <ul>
+      <li>use alt+insert - toJson() </li>
+    </ul>
     ]]>
   </change-notes>
 

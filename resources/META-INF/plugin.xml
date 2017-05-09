@@ -1,6 +1,6 @@
 <idea-plugin>
   <id>com.zxk.plugin.buildjson</id>
-  <name>build json</name>
+  <name>Build Json</name>
   <version>0.1</version>
   <vendor email="zxk844977406@outlook.com" url="http://xinkunz.github.io">zhang xinkun</vendor>
 

@@ -6,3 +6,6 @@
       * json 对象类
       * 添加 key value 的方法
       * 添加 json 数组的方法
+      
+## Licence
+* **[Apache](http://www.apache.org/licenses/LICENSE-2.0)**  

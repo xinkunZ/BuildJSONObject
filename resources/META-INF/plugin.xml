@@ -1,18 +1,34 @@
 <idea-plugin>
   <id>com.zxk.plugin.buildjson</id>
-  <name>build json</name>
-  <version>0.1</version>
+  <name>Build JSON</name>
+  <version>1.1</version>
   <vendor email="zxk844977406@outlook.com" url="http://xinkunz.github.io">zhang xinkun</vendor>
 
   <description><![CDATA[
       <em>Create toJson() method in java file automatically</em>
+      <li>use alt+insert - toJson() </li>
     ]]></description>
 
   <change-notes><![CDATA[
-    <h1>version 0.1</h1>
-    <ul>
-      <li>use alt+insert - toJson() </li>
-    </ul>
+<h1>version 1.1</h1>
+
+<ul>
+    <li>支持line行添加</li>
+    <li>插件只查找private类型的字段，并且支持设置排除的field名称，如序列化id，logger等</li>
+    <li>如果是Date类型的field，则使用jpos.Converter.toString();</li>
+    <li>如果是Bigdecimal类型的field
+        <ul>
+            <li>如果field名称包含qty，则使用toQtyString();</li>
+            <li>否则使用toMoneyString();</li>
+        </ul>
+    </li>
+</ul>
+
+<h1>version 0.1</h1>
+
+<ul>
+    <li>first upload</li>
+</ul>
     ]]>
   </change-notes>
 
@@ -27,15 +43,22 @@
 
   <extensions defaultExtensionNs="com.intellij">
     <!-- Add your extensions here -->
+    <projectService serviceImplementation="com.zxk.plugin.config.MyComponent"/>
+    <projectConfigurable instance="com.zxk.plugin.config.MyComponent"/>
   </extensions>
 
   <actions>
     <!-- Add your actions here -->
-    <action id="com.zxk.plugin.buildjson" class="com.zxk.plugin.BuildJSON" text="toJson()"
+    <action id="com.zxk.plugin.buildjson" class="com.zxk.plugin.action.BuildJSON" text="toJSON()"
       description="generate java bean toJson method automatically">
       <add-to-group group-id="GenerateGroup" anchor="before" relative-to-action="OverrideMethods"/>
       <keyboard-shortcut keymap="$default" first-keystroke="alt J"/>
     </action>
   </actions>
 
+  <project-components>
+    <component>
+      <implementation-class>com.zxk.plugin.config.MyComponent</implementation-class>
+    </component>
+  </project-components>
 </idea-plugin>

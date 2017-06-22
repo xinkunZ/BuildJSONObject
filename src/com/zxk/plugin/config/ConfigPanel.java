@@ -22,6 +22,7 @@ public class ConfigPanel {
 
   public MyConfigBean getData() {
     MyConfigBean data = new MyConfigBean();
+
     data.setIgnoreFieldName(ignoreField.getText());
     return data;
   }

@@ -1,33 +1,33 @@
 package com.zxk.plugin.config;
 
-import com.intellij.openapi.components.PersistentStateComponent;
+import javax.swing.JComponent;
+
+import org.jetbrains.annotations.Nls;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import com.intellij.openapi.components.ProjectComponent;
+import com.intellij.openapi.components.ServiceManager;
 import com.intellij.openapi.components.State;
 import com.intellij.openapi.components.Storage;
 import com.intellij.openapi.options.Configurable;
 import com.intellij.openapi.options.ConfigurationException;
 import com.intellij.openapi.project.Project;
-import com.intellij.util.xmlb.XmlSerializerUtil;
-import java.awt.FlowLayout;
-import javax.swing.JComponent;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import org.jetbrains.annotations.Nls;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * @author zhangxinkun
  */
-@State(name = "buildJsonSettings", storages = {@Storage("buildJsonSettings.xml")})
-public class MyComponent implements ProjectComponent, Configurable,
-    PersistentStateComponent<MyConfigBean> {
+@State(name = "buildJsonSettings", storages = { @Storage("buildJsonSettings.xml") })
+public class MyComponent implements ProjectComponent, Configurable {
 
-  private Project project;
-  public static MyConfigBean config = new MyConfigBean();
+  public MyConfigBean config;
 
   public MyComponent(Project project) {
-    this.project = project;
+    this.config = ServiceManager.getService(project, MyConfigBean.class);
+  }
+
+  public MyConfigBean getConfig() {
+    return config;
   }
 
   @Override
@@ -62,43 +62,30 @@ public class MyComponent implements ProjectComponent, Configurable,
     return "build json";
   }
 
-  private JTextField t;
+  private ConfigPanel form;
 
   @Nullable
   @Override
   public JComponent createComponent() {
-    JPanel panel = new JPanel(new FlowLayout());
-    t = new JTextField();
-    t.setColumns(18);
-    panel.add(t);
-
-    return panel;
+    if (this.form == null) {
+      this.form = new ConfigPanel();
+    }
+    this.form.setData(config == null ? new MyConfigBean() : config);
+    return this.form.getRootComponent();
   }
 
   @Override
   public boolean isModified() {
-    return !config.getIgnoreFieldName().equals(t.getText());
+    if (config == null) {
+      return false;
+    } else {
+      return !config.equals(this.form.getData());
+    }
   }
 
   @Override
   public void apply() throws ConfigurationException {
-    config.setIgnoreFieldName(t.getText());
+    config = this.form.getData();
   }
 
-
-  @Nullable
-  @Override
-  public MyConfigBean getState() {
-    return config;
-  }
-
-  @Override
-  public void reset() {
-    t.setText(config.getIgnoreFieldName());
-  }
-
-  @Override
-  public void loadState(MyConfigBean myConfigBean) {
-    XmlSerializerUtil.copyBean(myConfigBean, config);
-  }
 }

@@ -20,10 +20,7 @@ public class ConfigPanel {
     return cp;
   }
 
-  public MyConfigBean getData() {
-    MyConfigBean data = new MyConfigBean();
-
-    data.setIgnoreFieldName(ignoreField.getText());
-    return data;
+  public String getData() {
+    return ignoreField.getText();
   }
 }

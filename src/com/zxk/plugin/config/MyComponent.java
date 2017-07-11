@@ -17,10 +17,9 @@ import com.intellij.openapi.project.Project;
 /**
  * @author zhangxinkun
  */
-@State(name = "buildJsonSettings", storages = { @Storage("buildJsonSettings.xml") })
 public class MyComponent implements ProjectComponent, Configurable {
 
-  public MyConfigBean config;
+  private MyConfigBean config;
 
   public MyComponent(Project project) {
     this.config = ServiceManager.getService(project, MyConfigBean.class);
@@ -76,16 +75,12 @@ public class MyComponent implements ProjectComponent, Configurable {
 
   @Override
   public boolean isModified() {
-    if (config == null) {
-      return false;
-    } else {
-      return !config.equals(this.form.getData());
-    }
+    return config != null && !config.getIgnoreFieldName().equals(this.form.getData());
   }
 
   @Override
   public void apply() throws ConfigurationException {
-    config = this.form.getData();
+    config.setIgnoreFieldName(this.form.getData());
   }
 
 }

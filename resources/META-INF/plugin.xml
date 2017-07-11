@@ -10,7 +10,13 @@
     ]]></description>
 
   <change-notes><![CDATA[
-<h1>version 1.1</h1>
+<h3>version 1.2</h3>
+
+<ul>
+    <li>修复配置保存的问题，现在可以愉快的设置忽略的属性名了</li>
+</ul>
+
+<h3>version 1.1</h3>
 
 <ul>
     <li>支持line行添加</li>
@@ -22,9 +28,10 @@
             <li>否则使用toMoneyString();</li>
         </ul>
     </li>
+    <li>支持自动导入Converter和JSONObject包</li>
 </ul>
 
-<h1>version 0.1</h1>
+<h3>version 0.1</h3>
 
 <ul>
     <li>first upload</li>
@@ -43,7 +50,7 @@
 
   <extensions defaultExtensionNs="com.intellij">
     <!-- Add your extensions here -->
-    <projectService serviceImplementation="com.zxk.plugin.config.MyComponent"/>
+    <projectService serviceImplementation="com.zxk.plugin.config.MyConfigBean"/>
     <projectConfigurable instance="com.zxk.plugin.config.MyComponent"/>
   </extensions>
 

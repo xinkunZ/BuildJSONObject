@@ -4,6 +4,9 @@
   * Json 对象使用 org.apache.tapestry.json.JSONObject
   
 # Version Notes
+### version 1.2
+* 修复配置保存的问题，现在可以愉快的设置忽略的属性名了
+
 ### version 1.1
 * 支持line行添加
 * 插件只查找private类型的字段，并且支持设置排除的field名称，如序列化id，logger等

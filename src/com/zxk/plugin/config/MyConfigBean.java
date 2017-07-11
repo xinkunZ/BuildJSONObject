@@ -4,12 +4,15 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.intellij.openapi.components.PersistentStateComponent;
+import com.intellij.openapi.components.State;
+import com.intellij.openapi.components.Storage;
 import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.util.xmlb.XmlSerializerUtil;
 
 /**
  * @author zhangxinkun
  */
+@State(name = "buildJsonSettings", storages = { @Storage("buildJsonSettings.xml") })
 public class MyConfigBean implements PersistentStateComponent<MyConfigBean>, Comparable<MyConfigBean> {
 
   private String ignoreFieldName = "tableName;logger;messagePrefix;serialVersionUID";

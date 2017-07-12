@@ -1,5 +1,7 @@
 package com.zxk.plugin.action;
 
+import org.jetbrains.annotations.NotNull;
+
 import com.intellij.lang.java.JavaLanguage;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
@@ -28,6 +30,18 @@ import com.zxk.plugin.util.MyConsts.NeedImport;
  * @author zhangxinkun
  */
 public class BuildJSON extends AnAction {
+
+  @Override
+  public void beforeActionPerformedUpdate(@NotNull AnActionEvent e) {
+    try{
+      PsiFile file = e.getDataContext().getData(LangDataKeys.PSI_FILE);
+      if (!JavaLanguage.INSTANCE.is(file != null ? file.getLanguage() : null)) {
+        e.getPresentation().setEnabled(false);
+      }
+    }catch(RuntimeException ex){
+      e.getPresentation().setEnabled(false);
+    }
+  }
 
   @Override
   public void actionPerformed(AnActionEvent e) {

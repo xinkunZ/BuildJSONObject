@@ -1,23 +1,26 @@
 # BuildJSONObject
-* 快速为 java bean 生成 toJson()和 toJson.toString()方法
-* 使用方法：alt+insert - toJson
-  * Json 对象使用 org.apache.tapestry.json.JSONObject
+* Generate `toJson` Method For Java Beans
+* How To Use:
+  * Alt+Insert - toJSON
+* Json tool supported by `org.apache.tapestry.json.JSONObject`
   
 # Version Notes
 ### version 1.2
-* 修复配置保存的问题，现在可以愉快的设置忽略的属性名了
+* Fix configuration persist bug
 
 ### version 1.1
-* 支持line行添加
-* 插件只查找private类型的字段，并且支持设置排除的field名称，如序列化id，logger等
-* 如果是Date类型的field，则使用jpos.Converter.toString();
-* 如果是Bigdecimal类型的field
-  * 如果field名称包含qty，则使用toQtyString();
-  * 否则使用toMoneyString();
-* 支持自动导入Converter和JSONObject包
+* Support One-To-Many Java Beans 
+* Only use private fields to build json
+* Support ignore fields(like serialVersionUID, logger,etc.) By IDEA Setttings
+* Support un-String type fields generate toString() automatically
+  * If Date type field, use `Converter.toString()`;
+  * If BigDecimal type field
+    * If field name contain "qty"， use `Converter.toQtyString()`;
+    * Else use `Converter.toMoneyString()`;
+* Support import `com.hd123.common.Converter` and `org.apache.tapestry.json.JSONObject packages` automatically
 
 ### version 0.1
-  * first upload
+  * First Upload
       
 ## Licence
 * **[Apache](http://www.apache.org/licenses/LICENSE-2.0)**  

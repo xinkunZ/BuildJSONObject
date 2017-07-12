@@ -5,6 +5,9 @@
 * Json tool supported by `org.apache.tapestry.json.JSONObject`
   
 # Version Notes
+### version 1.2.1
+* If not java file,remove toJson from generate items
+
 ### version 1.2
 * Fix configuration persist bug
 

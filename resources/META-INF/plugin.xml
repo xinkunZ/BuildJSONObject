@@ -1,7 +1,7 @@
 <idea-plugin>
   <id>com.zxk.plugin.buildjson</id>
   <name>Build JSON</name>
-  <version>1.2</version>
+  <version>1.2.1</version>
   <vendor email="zxk844977406@outlook.com" url="http://xinkunz.github.io">zhang xinkun</vendor>
 
   <description><![CDATA[
@@ -10,31 +10,42 @@
     ]]></description>
 
   <change-notes><![CDATA[
+<h3>version 1.2.1</h3>
+
+<ul>
+    <li>If not java file,remove toJson from generate items</li>
+</ul>
+
 <h3>version 1.2</h3>
 
 <ul>
-    <li>修复配置保存的问题，现在可以愉快的设置忽略的属性名了</li>
+    <li>Fix configuration persist bug</li>
 </ul>
 
 <h3>version 1.1</h3>
 
 <ul>
-    <li>支持line行添加</li>
-    <li>插件只查找private类型的字段，并且支持设置排除的field名称，如序列化id，logger等</li>
-    <li>如果是Date类型的field，则使用jpos.Converter.toString();</li>
-    <li>如果是Bigdecimal类型的field
+    <li>Support One-To-Many Java Beans </li>
+    <li>Only use private fields to build json</li>
+    <li>Support ignore fields(like serialVersionUID, logger,etc.) By IDEA Setttings</li>
+    <li>Support un-String type fields generate toString() automatically
         <ul>
-            <li>如果field名称包含qty，则使用toQtyString();</li>
-            <li>否则使用toMoneyString();</li>
+            <li>If Date type field, use <code>Converter.toString()</code>;</li>
+            <li>If BigDecimal type field
+                <ul>
+                    <li>If field name contain &quot;qty&quot;， use <code>Converter.toQtyString()</code>;</li>
+                    <li>Else use <code>Converter.toMoneyString()</code>;</li>
+                </ul>
+            </li>
         </ul>
     </li>
-    <li>支持自动导入Converter和JSONObject包</li>
+    <li>Support import <code>com.hd123.common.Converter</code> and <code>org.apache.tapestry.json.JSONObject packages</code>        automatically</li>
 </ul>
 
 <h3>version 0.1</h3>
 
 <ul>
-    <li>first upload</li>
+    <li>First Upload</li>
 </ul>
     ]]>
   </change-notes>

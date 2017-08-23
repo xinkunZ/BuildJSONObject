@@ -43,7 +43,10 @@ public class ToJsonGenerator {
     }
 
     for (PsiField field : fields) {
-      if (field.getModifierList() != null && PsiUtil.getAccessLevel(field.getModifierList()) != MyConsts.PUBLIC_LEVEL) {
+      if ((field.getModifierList() != null && PsiUtil.getAccessLevel(field.getModifierList()) != PsiUtil.ACCESS_LEVEL_PRIVATE)
+          || field.getModifierList().hasModifierProperty("final")
+          || field.getModifierList().hasModifierProperty("static")) {
+
         // 只认private级别的属性
         continue;
       }
@@ -72,7 +75,7 @@ public class ToJsonGenerator {
           value = String.format("Converter.toMoneyString(%s)", field.getName());
         }
         sb.append(String.format("jo.put(\"%s\",%s);\n", field.getName(), value));
-      } else if(field.getType().equalsToText(Date.class.getName())) {
+      } else if (field.getType().equalsToText(Date.class.getName())) {
         String value = String.format("Converter.toString(%s)", field.getName());
         sb.append(String.format("jo.put(\"%s\",%s);\n", field.getName(), value));
       } else {

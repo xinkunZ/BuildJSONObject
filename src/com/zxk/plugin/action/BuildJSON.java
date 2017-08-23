@@ -33,12 +33,12 @@ public class BuildJSON extends AnAction {
 
   @Override
   public void beforeActionPerformedUpdate(@NotNull AnActionEvent e) {
-    try{
+    try {
       PsiFile file = e.getDataContext().getData(LangDataKeys.PSI_FILE);
       if (!JavaLanguage.INSTANCE.is(file != null ? file.getLanguage() : null)) {
         e.getPresentation().setEnabled(false);
       }
-    }catch(RuntimeException ex){
+    } catch (RuntimeException ex) {
       e.getPresentation().setEnabled(false);
     }
   }

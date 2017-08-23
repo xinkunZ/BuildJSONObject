@@ -8,8 +8,6 @@ public interface MyConsts {
   String TO_JSON = "toJson";
   String TO_STRING = "toString";
 
-  int PUBLIC_LEVEL = 1;
-
   String CONVERTER_CLASSNAME = "Converter";
   String CONVERTER_QUALIFIEDNAME = "com.hd123.common.Converter";
 
